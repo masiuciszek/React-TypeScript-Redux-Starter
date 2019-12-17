@@ -1,5 +1,12 @@
 import { combineReducers } from 'redux';
+import todosReducer from './todosReducer';
 
-export default combineReducers({
-  test: () => 'hello',
+
+const rootReducer = combineReducers({
+  todos: todosReducer,
 });
+
+
+export type AppState = ReturnType<typeof rootReducer>
+
+export default rootReducer;

@@ -1,8 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { AppState } from '../store/reducers';
+import { getTodos } from '../store/actions';
 
 
-const App: React.FC = () => {
-  let a;
+interface P {
+  todos: TodoType[];
+}
+
+const App: React.FC<P> = ({ todos }) => {
+  console.log(todos);
+  React.useEffect(() => {
+    getTodos();
+  }, []);
   return (
     <div className="App">
       <h1>Apa</h1>
@@ -10,4 +20,9 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state: AppState) => ({
+  todos: state.todos.todos,
+});
+
+
+export default connect(mapStateToProps, { getTodos })(App);
