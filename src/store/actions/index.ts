@@ -1,11 +1,14 @@
+/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import redux, { Dispatch } from 'redux';
+import { Dispatch } from 'redux';
+import { ActionTypes, GetTodosAction } from './types';
+
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
-export const getTodos = async () => (dispatch: Dispatch) => {
+export const getTodos = () => async (dispatch: Dispatch) => {
   const res = await axios.get<TodoType[]>(url);
-  dispatch({
-    type: 'GET_TODOS',
+  dispatch<GetTodosAction>({
+    type: ActionTypes.GET_TODOS,
     payload: res.data,
   });
 };
