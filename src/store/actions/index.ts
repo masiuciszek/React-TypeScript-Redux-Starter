@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { ActionTypes, GetTodosAction } from './types';
+import { ActionTypes, GetTodosAction, DeleteTodoAction } from './types';
 
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
@@ -14,3 +14,8 @@ export const getTodos = () => async (dispatch: Dispatch) => {
     payload: res.data,
   });
 };
+
+export const deleteTodo = (id: number): DeleteTodoAction => ({
+  type: ActionTypes.REMOVE_TODO,
+  payload: id,
+});

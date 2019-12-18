@@ -21,11 +21,22 @@
 }
 
 .todoItem-true p {
-  color: rgb(123, 197, 12);
+  color: rgba(212, 255, 148, 0.384);
 }
 
 .todoItem-false p {
-  color: rgb(230, 86, 33);
+  color: rgba(230, 85, 33, 0.671);
 }
 
-.todoItem p {}
+.todoItem p {
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete {
+  cursor: pointer;
+  color: slategray;
+  margin: 0 .4em;
+
+  ;
+}

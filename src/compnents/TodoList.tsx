@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../store/reducers';
-import { getTodos } from '../store/actions';
+import { getTodos, deleteTodo } from '../store/actions';
+
 import TodoItem from './TodoItem';
 import './todoList.css';
 
 interface P {
   getTodos: any;
+  deleteTodo: any;
   todos: TodoType[];
 }
 
-const TodoList: React.FC<P> = ({ getTodos, todos }) => {
+const TodoList: React.FC<P> = ({ getTodos, todos, deleteTodo }) => {
   const [showTodos, setShowTodos] = React.useState<boolean>(false);
   React.useEffect(() => {
     getTodos();
@@ -23,7 +25,7 @@ const TodoList: React.FC<P> = ({ getTodos, todos }) => {
           <button type="button" onClick={() => setShowTodos(!showTodos)}>Show Todos</button>
         </div>
         {showTodos && (
-          todos.map((todo: TodoType): JSX.Element => <TodoItem key={todo.id} todo={todo} />)
+          todos.map((todo: TodoType): JSX.Element => <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />)
         )}
       </div>
     </>
@@ -32,4 +34,4 @@ const TodoList: React.FC<P> = ({ getTodos, todos }) => {
 
 const mapStateToProps = (state: AppState) => ({ todos: state.todos.todos });
 
-export default connect(mapStateToProps, { getTodos })(TodoList);
+export default connect(mapStateToProps, { getTodos, deleteTodo })(TodoList);
