@@ -7,8 +7,9 @@ import TodoItem from './TodoItem';
 import './todoList.css';
 
 interface P {
-  getTodos: any;
-  deleteTodo: any;
+  // Type function , because of redux thunk
+  getTodos: Function;
+  deleteTodo: typeof deleteTodo;
   todos: TodoType[];
 }
 
@@ -22,7 +23,7 @@ const TodoList: React.FC<P> = ({ getTodos, todos, deleteTodo }) => {
     <>
       <div className="TodoListStyles">
         <div className="btn-group">
-          <button type="button" onClick={() => setShowTodos(!showTodos)}>Show Todos</button>
+          <button type="button" onClick={(): void => setShowTodos(!showTodos)}>Show Todos</button>
         </div>
         {showTodos && (
           todos.map((todo: TodoType): JSX.Element => <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />)

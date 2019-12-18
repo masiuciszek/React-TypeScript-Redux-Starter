@@ -12,12 +12,14 @@
 .todoItem-true {
   background: #333;
   color: #fff;
+  /* transform: rotate(3deg); */
+  z-index: 2;
 }
 
 .todoItem-false {
   background: #eee;
   color: #333;
-
+  /* transform: rotate(-2deg); */
 }
 
 .todoItem-true p {
