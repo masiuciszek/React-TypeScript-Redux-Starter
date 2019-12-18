@@ -1,0 +1,31 @@
+.todoItem {
+  padding: 2em 1.5em;
+  font-size: 1.8em;
+  width: 55vw;
+  margin: .8em auto;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 1px 2px 2px #ccc;
+  text-align: left;
+}
+
+.todoItem-true {
+  background: #333;
+  color: #fff;
+}
+
+.todoItem-false {
+  background: #eee;
+  color: #333;
+
+}
+
+.todoItem-true p {
+  color: rgb(123, 197, 12);
+}
+
+.todoItem-false p {
+  color: rgb(230, 86, 33);
+}
+
+.todoItem p {}
