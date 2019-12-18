@@ -6,9 +6,10 @@ import { getTodos } from '../store/actions';
 
 interface P {
   todos: TodoType[];
+  getTodos: any;
 }
 
-const App: React.FC<P> = ({ todos }) => {
+const App: React.FC<P> = ({ todos, getTodos }) => {
   console.log(todos);
   React.useEffect(() => {
     getTodos();
