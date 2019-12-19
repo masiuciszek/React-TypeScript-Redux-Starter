@@ -11,9 +11,12 @@ interface P {
   getTodos: Function;
   deleteTodo: typeof deleteTodo;
   todos: TodoType[];
+  loading: boolean;
 }
 
-const TodoList: React.FC<P> = ({ getTodos, todos, deleteTodo }) => {
+const TodoList: React.FC<P> = ({
+  getTodos, todos, deleteTodo, loading,
+}) => {
   const [showTodos, setShowTodos] = React.useState<boolean>(false);
   React.useEffect(() => {
     getTodos();
@@ -23,9 +26,10 @@ const TodoList: React.FC<P> = ({ getTodos, todos, deleteTodo }) => {
     <>
       <div className="TodoListStyles">
         <div className="btn-group">
-          <button type="button" onClick={(): void => setShowTodos(!showTodos)}>Show Todos</button>
+          <button type="button" onClick={(): void => setShowTodos(!showTodos)}>{showTodos ? 'Hide' : 'Show'}</button>
         </div>
-        {showTodos && (
+        {loading && <h3>...Loading</h3> }
+        {!loading && showTodos && (
           todos.map((todo: TodoType): JSX.Element => <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />)
         )}
       </div>
@@ -33,6 +37,6 @@ const TodoList: React.FC<P> = ({ getTodos, todos, deleteTodo }) => {
   );
 };
 
-const mapStateToProps = (state: AppState) => ({ todos: state.todos.todos });
+const mapStateToProps = (state: AppState) => ({ todos: state.todos.todos, loading: state.todos.loading });
 
 export default connect(mapStateToProps, { getTodos, deleteTodo })(TodoList);
